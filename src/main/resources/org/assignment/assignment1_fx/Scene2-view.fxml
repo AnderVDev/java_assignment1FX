@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="scene2AnchorPane" prefHeight="451.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.assignment.assignment1_fx.controller.Scene2Controller">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+<!--    <Label fx:id="welcomeText" layoutX="286.0" layoutY="280.0" prefHeight="17.0" prefWidth="42.0" />-->
+    <Button layoutX="573.0" layoutY="423.0" onAction="#switchToScene1" text="View Chart" />
+   <TableView fx:id="dataTableView" layoutX="25.0" layoutY="65.0" prefHeight="344.0" prefWidth="667.0">
+     <columns>
+       <TableColumn fx:id="dataIDTableColumn" prefWidth="75.0" text="ID" />
+       <TableColumn fx:id="dataNameTableColumn" prefWidth="166.0" text="Name" />
+         <TableColumn fx:id="dataRoleTableColumn" prefWidth="155.0" text="Role" />
+         <TableColumn fx:id="dataAttackTableColumn" prefWidth="139.0" text="Attack Type" />
+         <TableColumn fx:id="dataDifficultyTableColumn" prefWidth="121.0" text="Difficulty" />
+     </columns>
+   </TableView>
+   <TextField fx:id="searchedKey" layoutX="71.0" layoutY="23.0" prefHeight="25.0" prefWidth="216.0" />
+   <Label layoutX="25.0" layoutY="27.0" text="Search" />
+
+</AnchorPane>
