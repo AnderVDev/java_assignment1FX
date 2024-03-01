@@ -49,8 +49,10 @@ public class Scene1Controller implements Initializable {
     private AnchorPane scene1AnchorPane;
     @FXML
 
+
     // Observable list for pie chart data
     ObservableList<DataModel> pieChartData = FXCollections.observableArrayList();
+
 
     // Database connector instance
     DatabaseConnector dbConnector = new DatabaseConnector();
@@ -62,6 +64,7 @@ public class Scene1Controller implements Initializable {
      */
     @FXML
     void switchToScene2(ActionEvent event) throws IOException {
+
         new SceneModel(scene1AnchorPane, "scene2-view.fxml");
     }
 
@@ -80,6 +83,8 @@ public class Scene1Controller implements Initializable {
             while (response.next()) {
                 pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
             }
+            // Apply inline CSS
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -137,8 +142,6 @@ public class Scene1Controller implements Initializable {
                 while (response.next()) {
                     pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
                 }
-
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }

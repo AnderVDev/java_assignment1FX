@@ -12,7 +12,7 @@ public class AssignmentApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AssignmentApplication.class.getResource("scene1-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-//        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle("Assignment 1!");
         stage.setScene(scene);
         stage.show();

@@ -12,10 +12,10 @@
   </padding>
    <PieChart fx:id="pieChart" layoutX="26.0" layoutY="14.0" prefHeight="400.0" prefWidth="629.0" title="League of Legens Heroes" />
   <Button layoutX="580.0" layoutY="447.0" onAction="#switchToScene2" text="View Table" />
-   <RadioButton fx:id="roleBtn" layoutX="200.0" layoutY="439.0" mnemonicParsing="false" onAction="#HandleButtonActionRole" text="Roles">
+   <RadioButton fx:id="roleBtn" layoutX="196.0" layoutY="439.0" mnemonicParsing="false" onAction="#HandleButtonActionRole" text="Roles">
       <toggleGroup>
          <ToggleGroup fx:id="dataView" />
       </toggleGroup></RadioButton>
    <RadioButton fx:id="attacksBtn" layoutX="290.0" layoutY="439.0" mnemonicParsing="false" onAction="#HandleButtonActionAttackType" text="Attacks Type" toggleGroup="$dataView" />
-   <RadioButton fx:id="difficultyBtn" layoutX="405.0" layoutY="439.0" mnemonicParsing="false" onAction="#HandleButtonActionDifficulty" text="Difficulty" toggleGroup="$dataView" />
+   <RadioButton fx:id="difficultyBtn" layoutX="416.0" layoutY="439.0" mnemonicParsing="false" onAction="#HandleButtonActionDifficulty" text="Difficulty" toggleGroup="$dataView" />
 </AnchorPane>

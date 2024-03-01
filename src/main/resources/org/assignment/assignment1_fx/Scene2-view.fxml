@@ -21,7 +21,7 @@
          <TableColumn fx:id="dataDifficultyTableColumn" prefWidth="121.0" text="Difficulty" />
      </columns>
    </TableView>
-   <TextField fx:id="searchedKey" layoutX="71.0" layoutY="23.0" prefHeight="25.0" prefWidth="216.0" />
+   <TextField fx:id="searchedKey" layoutX="90.0" layoutY="23.0" prefHeight="25.0" prefWidth="216.0" />
    <Label layoutX="25.0" layoutY="27.0" text="Search" />
 
 </AnchorPane>

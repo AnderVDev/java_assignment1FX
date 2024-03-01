@@ -1,0 +1,110 @@
+.root{
+    -fx-background-color: #363949;
+
+}
+
+/* Styles for PieChart with labels inside */
+.chart-pie {
+    -fx-pie-label-visible: true; /* Show labels */
+    -fx-pie-label-inside-text-fill: #363949; /* Label text color */
+    -fx-pie-label-inside-auto-criminality: 100; /* Ensures labels are always displayed inside */
+    -fx-pie-label-inside-gap: 0.4; /* Gap between pie slice and label */
+    -fx-pie-label-inside-text-align: center; /* Alignment of label text */
+}
+
+.chart-pie-label {
+    -fx-fill: #fbfbfb;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold; /* Title font weight */
+}
+
+/* Style each pie slice individually */
+.chart-pie .chart-pie-area {
+    -fx-fill: linear-gradient(to bottom, #4CAF50, #388E3C); /* Gradient fill for pie slices */
+}
+
+/* Style the pie chart title */
+.chart-title {
+    -fx-font-size: 24px; /* Title font size */
+    -fx-font-weight: bold; /* Title font weight */
+    -fx-text-fill: white; /* Title text color */
+}
+.chart-legend {
+    -fx-background-color: #363949;
+    -fx-stroke: #daa520;
+    -fx-border-color: #fbfbfb; /* Border color when focused */
+    -fx-border-width: 1px; /* Border width when focused */
+    -fx-border-radius: 8px
+}
+
+/* Pressed effect */
+.button:pressed {
+    -fx-background-color: #363949; /* Background color */
+    -fx-text-fill: #fbfbfb; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-background-radius: 8px; /* Border radius */
+    -fx-border-color: #fbfbfb; /* Border color when focused */
+    -fx-border-width: 2px; /* Border width when focused */
+    -fx-border-radius: 8px
+}
+
+
+/* Default button style */
+.button{
+    -fx-background-color: #fbfbfb; /* Background color when pressed */
+    -fx-text-fill: #363949; /* Text color when pressed */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 8px 16px; /* Padding */
+    -fx-background-radius: 8px; /* Border radius */
+    -fx-border-color: #fbfbfb; /* Border color when focused */
+    -fx-border-width: 2px; /* Border width when focused */
+    -fx-border-radius: 8px
+}
+
+/* Radio Buttons */
+.radio-button {
+    -fx-font-size: 14px; /* Font size */
+    -fx-text-fill: #fbfbfb; /* Text color */
+    -fx-font-weight: bold; /* Font weight */
+}
+/*labels */
+.label {
+    -fx-font-size: 14px; /* Font size */
+    -fx-text-fill: #fbfbfb; /* Text color */
+    -fx-font-weight: bold; /* Font weight */
+}
+
+/* Table View */
+.table-view {
+    -fx-font-size: 14px; /* Font size */
+}
+
+/* Table Header */
+.table-view .column-header {
+    -fx-font-weight: bold; /* Bold font for headers */
+    -fx-background-color: #363949; /* Background color for headers */
+    -fx-border-color: #ccc; /* Border color for headers */
+    -fx-border-width: 1px; /* Border width for headers */
+}
+
+/* Table Row */
+.table-row-cell {
+    -fx-background-color: #fbfbfb; /* Background color for rows */
+    -fx-border-color: #ccc; /* Border color for rows */
+    -fx-border-width: 0 1px 1px 0; /* Border width for rows */
+}
+
+/* Table Row Hover Effect */
+.table-row-cell:hover {
+    -fx-background-color: #ccc; /* Background color on hover */
+}
+
+/* Table Row Selected Effect */
+.table-row-cell:selected {
+    -fx-background-color: #ccc; /* Background color when selected */
+    -fx-text-fill: #363949; /* Text color */
+}
+
