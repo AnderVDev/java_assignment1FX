@@ -65,35 +65,23 @@ public class Scene1Controller implements Initializable {
     }
 
     /**
+     * Initializes the controller class.
+     * Sets up the initial UI state and loads Role data onto the pie chart.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Select Role button by default
+        roleBtn.setSelected(true);
+        fetchDataAndDisplay("role");
+    }
+
+    /**
      * Method to handle button click event for Role data view.
      * Retrieves and displays Role data on pie chart.
      */
-
     @FXML
     private void HandleButtonActionRole(ActionEvent event){
         fetchDataAndDisplay("role");
-//        DatabaseConnector dbConnector = new DatabaseConnector();
-//        Connection connection = dbConnector.connect();
-//
-//        try {
-//            Statement statement = connection.createStatement();
-//            ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
-//            pieChart.getData().clear();
-//            while (response.next()) {
-//                pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
-//            }
-//            // Apply inline CSS
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }finally {
-//// Don't forget to close your connections when you're done
-//            try {
-//                if(connection != null) connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     /**
@@ -104,25 +92,7 @@ public class Scene1Controller implements Initializable {
     @FXML
     private void HandleButtonActionAttackType(ActionEvent event){
         fetchDataAndDisplay("attack_type");
-//        DatabaseConnector dbConnector = new DatabaseConnector();
-//        Connection connection = dbConnector.connect();
-//        try {
-//            Statement statement = connection.createStatement();
-//            ResultSet response = statement.executeQuery("SELECT attack_type, COUNT(*) AS quantity FROM Champion GROUP BY attack_type");
-//            pieChart.getData().clear();
-//            while (response.next()) {
-//                pieChart.getData().add(new PieChart.Data(response.getString("attack_type"), response.getInt("quantity")));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }finally {
-//// Don't forget to close your connections when you're done
-//            try {
-//                if(connection != null) connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
+
     }
 
     /**
@@ -133,81 +103,41 @@ public class Scene1Controller implements Initializable {
     @FXML
     private void HandleButtonActionDifficulty(ActionEvent event){
         fetchDataAndDisplay("difficulty");
-//        DatabaseConnector dbConnector = new DatabaseConnector();
-//        Connection connection = dbConnector.connect();
-//        try {
-//            Statement statement = connection.createStatement();
-//            ResultSet response = statement.executeQuery("SELECT difficulty, COUNT(*) AS quantity FROM Champion GROUP BY difficulty");
-//            pieChart.getData().clear();
-//            while (response.next()) {
-//                pieChart.getData().add(new PieChart.Data(response.getString("difficulty"), response.getInt("quantity")));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }finally {
-//// Don't forget to close your connections when you're done
-//            try {
-//                if(connection != null) connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     /**
-     * Initializes the controller class.
-     * Sets up the initial UI state and loads Role data onto the pie chart.
+     * Fetches data from the database based on the specified column and displays it on a pie chart.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    // Select Role button by default
-        roleBtn.setSelected(true);
-        fetchDataAndDisplay("role");
-
-
-
-//        DatabaseConnector dbConnector = new DatabaseConnector();
-//        Connection connection = dbConnector.connect();
-//        try {
-//            Statement statement = connection.createStatement();
-//            ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
-//                while (response.next()) {
-//                    pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
-//                }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }finally {
-//// Don't forget to close your connections when you're done
-//            try {
-//                if(connection != null) connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-    }
 
     private void fetchDataAndDisplay(String column) {
+        // Create a new instance of DatabaseConnector to establish a connection to the database
         DatabaseConnector dbConnector = new DatabaseConnector();
+        // Attempt to establish a connection to the database
         Connection connection = dbConnector.connect();
         try (Statement statement = connection.createStatement()) {
+            // Execute SQL query to retrieve data from the specified column along with its count
             ResultSet response = statement.executeQuery("SELECT " + column + ", COUNT(*) AS quantity FROM Champion GROUP BY " + column);
+            // Clear existing data in the pie chart
             pieChart.getData().clear();
+            // Iterate through the result set and add data to the pie chart
             while (response.next()) {
+                // Add a new slice to the pie chart with the retrieved data
                 pieChart.getData().add(new PieChart.Data(response.getString(column), response.getInt("quantity")));
             }
         } catch (SQLException e) {
+            // Handle any SQL exceptions by printing the stack trace
             e.printStackTrace();
         } finally {
-// Don't forget to close your connections when you're done
+            // Ensure that the database connection is closed, regardless of whether an exception occurred or not
             try {
                 if (connection != null) connection.close();
             } catch (SQLException e) {
+                // Handle any SQL exceptions that may occur while attempting to close the connection
                 e.printStackTrace();
             }
         }
     }
 
-    // Ensure database connection is closed when controller is destroyed
+
 
 }
