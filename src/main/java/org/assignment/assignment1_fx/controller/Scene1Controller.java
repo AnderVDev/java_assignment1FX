@@ -56,14 +56,7 @@ public class Scene1Controller implements Initializable {
     // Observable list for pie chart data
     ObservableList<DataModel> pieChartData = FXCollections.observableArrayList();
 
-
-    // Database connector instance
-//    DatabaseConnector dbConnector = new DatabaseConnector();
-//    Connection connection = dbConnector.connect();
-
-
-    /**
-     * Method to switch to Scene 2.
+    /**     * Method to switch to Scene 2.
      */
     @FXML
     void switchToScene2(ActionEvent event) throws IOException {
@@ -78,28 +71,29 @@ public class Scene1Controller implements Initializable {
 
     @FXML
     private void HandleButtonActionRole(ActionEvent event){
-        DatabaseConnector dbConnector = new DatabaseConnector();
-        Connection connection = dbConnector.connect();
-
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
-            pieChart.getData().clear();
-            while (response.next()) {
-                pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
-            }
-            // Apply inline CSS
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-// Don't forget to close your connections when you're done
-            try {
-                if(connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        fetchDataAndDisplay("role");
+//        DatabaseConnector dbConnector = new DatabaseConnector();
+//        Connection connection = dbConnector.connect();
+//
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
+//            pieChart.getData().clear();
+//            while (response.next()) {
+//                pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
+//            }
+//            // Apply inline CSS
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }finally {
+//// Don't forget to close your connections when you're done
+//            try {
+//                if(connection != null) connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     /**
@@ -109,25 +103,26 @@ public class Scene1Controller implements Initializable {
 
     @FXML
     private void HandleButtonActionAttackType(ActionEvent event){
-        DatabaseConnector dbConnector = new DatabaseConnector();
-        Connection connection = dbConnector.connect();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet response = statement.executeQuery("SELECT attack_type, COUNT(*) AS quantity FROM Champion GROUP BY attack_type");
-            pieChart.getData().clear();
-            while (response.next()) {
-                pieChart.getData().add(new PieChart.Data(response.getString("attack_type"), response.getInt("quantity")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-// Don't forget to close your connections when you're done
-            try {
-                if(connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        fetchDataAndDisplay("attack_type");
+//        DatabaseConnector dbConnector = new DatabaseConnector();
+//        Connection connection = dbConnector.connect();
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet response = statement.executeQuery("SELECT attack_type, COUNT(*) AS quantity FROM Champion GROUP BY attack_type");
+//            pieChart.getData().clear();
+//            while (response.next()) {
+//                pieChart.getData().add(new PieChart.Data(response.getString("attack_type"), response.getInt("quantity")));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }finally {
+//// Don't forget to close your connections when you're done
+//            try {
+//                if(connection != null) connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     /**
@@ -137,25 +132,26 @@ public class Scene1Controller implements Initializable {
 
     @FXML
     private void HandleButtonActionDifficulty(ActionEvent event){
-        DatabaseConnector dbConnector = new DatabaseConnector();
-        Connection connection = dbConnector.connect();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet response = statement.executeQuery("SELECT difficulty, COUNT(*) AS quantity FROM Champion GROUP BY difficulty");
-            pieChart.getData().clear();
-            while (response.next()) {
-                pieChart.getData().add(new PieChart.Data(response.getString("difficulty"), response.getInt("quantity")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-// Don't forget to close your connections when you're done
-            try {
-                if(connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        fetchDataAndDisplay("difficulty");
+//        DatabaseConnector dbConnector = new DatabaseConnector();
+//        Connection connection = dbConnector.connect();
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet response = statement.executeQuery("SELECT difficulty, COUNT(*) AS quantity FROM Champion GROUP BY difficulty");
+//            pieChart.getData().clear();
+//            while (response.next()) {
+//                pieChart.getData().add(new PieChart.Data(response.getString("difficulty"), response.getInt("quantity")));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }finally {
+//// Don't forget to close your connections when you're done
+//            try {
+//                if(connection != null) connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     /**
@@ -166,27 +162,50 @@ public class Scene1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     // Select Role button by default
         roleBtn.setSelected(true);
+        fetchDataAndDisplay("role");
+
+
+
+//        DatabaseConnector dbConnector = new DatabaseConnector();
+//        Connection connection = dbConnector.connect();
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
+//                while (response.next()) {
+//                    pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
+//                }
+//
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }finally {
+//// Don't forget to close your connections when you're done
+//            try {
+//                if(connection != null) connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+    }
+
+    private void fetchDataAndDisplay(String column) {
         DatabaseConnector dbConnector = new DatabaseConnector();
         Connection connection = dbConnector.connect();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
-                while (response.next()) {
-                    pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }finally {
+        try (Statement statement = connection.createStatement()) {
+            ResultSet response = statement.executeQuery("SELECT " + column + ", COUNT(*) AS quantity FROM Champion GROUP BY " + column);
+            pieChart.getData().clear();
+            while (response.next()) {
+                pieChart.getData().add(new PieChart.Data(response.getString(column), response.getInt("quantity")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
 // Don't forget to close your connections when you're done
             try {
-                if(connection != null) connection.close();
+                if (connection != null) connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     // Ensure database connection is closed when controller is destroyed
