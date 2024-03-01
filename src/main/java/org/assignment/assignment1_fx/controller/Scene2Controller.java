@@ -90,7 +90,7 @@ public class Scene2Controller implements Initializable {
             searchedKey.textProperty().addListener((observable,oldValue, newValue)-> {
                 filteredData.setPredicate(dataModel -> {
                     // if no search value then display all records or whatever records it current
-                    if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
+                    if(newValue.isEmpty() || newValue.isBlank()){
                         return true;
                     }
                     String searchKeyboard = newValue.toLowerCase();
@@ -99,13 +99,13 @@ public class Scene2Controller implements Initializable {
                     if (dataModel.getName().toLowerCase().contains(searchKeyboard)){
                         return  true;
 
-                    } else if (dataModel.getRole().toLowerCase().indexOf(searchKeyboard)> -1) {
+                    } else if (dataModel.getRole().toLowerCase().contains(searchKeyboard)) {
                         return true;
                         
-                    } else if (dataModel.getAttack_type().toLowerCase().indexOf(searchKeyboard)> -1) {
+                    } else if (dataModel.getAttack_type().toLowerCase().contains(searchKeyboard)) {
                         return true;
 
-                    }else if (dataModel.getDifficulty().toLowerCase().indexOf(searchKeyboard)> -1) {
+                    }else if (dataModel.getDifficulty().toLowerCase().contains(searchKeyboard)) {
                         return true;
 
                     }else {

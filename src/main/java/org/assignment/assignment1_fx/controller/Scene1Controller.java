@@ -142,8 +142,16 @@ public class Scene1Controller implements Initializable {
                 while (response.next()) {
                     pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
                 }
+
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+
     }
+
+    // Ensure database connection is closed when controller is destroyed
+
 }
