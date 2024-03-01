@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
  * Utility class to establish a connection to the database.
+ * @author  Anderson Victoral
+ *  @version 1.0
+ *  @since   2024-03-01
  */
 public class DatabaseConnector {
     // Database connection details

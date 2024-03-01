@@ -25,6 +25,9 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 /**
  * Controller class for the Scene2 FXML view.
+ *  @author  Anderson Victoral
+ *  @version 1.0
+ *  @since   2024-03-01
  */
 public class Scene2Controller implements Initializable {
 
@@ -123,6 +126,13 @@ public class Scene2Controller implements Initializable {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+        // Don't forget to close your connections when you're done
+            try {
+                if(connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

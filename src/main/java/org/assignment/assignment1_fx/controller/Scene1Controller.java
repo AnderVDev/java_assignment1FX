@@ -29,6 +29,9 @@ import java.util.ResourceBundle;
 /**
  * Controller class for Scene1.fxml.
  * Handles actions and initializes UI elements.
+ *  @author  Anderson Victoral
+ *  @version 1.0
+ *  @since   2024-03-01
  */
 
 public class Scene1Controller implements Initializable {
@@ -55,8 +58,8 @@ public class Scene1Controller implements Initializable {
 
 
     // Database connector instance
-    DatabaseConnector dbConnector = new DatabaseConnector();
-    Connection connection = dbConnector.connect();
+//    DatabaseConnector dbConnector = new DatabaseConnector();
+//    Connection connection = dbConnector.connect();
 
 
     /**
@@ -75,6 +78,8 @@ public class Scene1Controller implements Initializable {
 
     @FXML
     private void HandleButtonActionRole(ActionEvent event){
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        Connection connection = dbConnector.connect();
 
         try {
             Statement statement = connection.createStatement();
@@ -87,6 +92,13 @@ public class Scene1Controller implements Initializable {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+// Don't forget to close your connections when you're done
+            try {
+                if(connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -97,6 +109,8 @@ public class Scene1Controller implements Initializable {
 
     @FXML
     private void HandleButtonActionAttackType(ActionEvent event){
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        Connection connection = dbConnector.connect();
         try {
             Statement statement = connection.createStatement();
             ResultSet response = statement.executeQuery("SELECT attack_type, COUNT(*) AS quantity FROM Champion GROUP BY attack_type");
@@ -106,6 +120,13 @@ public class Scene1Controller implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+// Don't forget to close your connections when you're done
+            try {
+                if(connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -116,6 +137,8 @@ public class Scene1Controller implements Initializable {
 
     @FXML
     private void HandleButtonActionDifficulty(ActionEvent event){
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        Connection connection = dbConnector.connect();
         try {
             Statement statement = connection.createStatement();
             ResultSet response = statement.executeQuery("SELECT difficulty, COUNT(*) AS quantity FROM Champion GROUP BY difficulty");
@@ -125,6 +148,13 @@ public class Scene1Controller implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+// Don't forget to close your connections when you're done
+            try {
+                if(connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -136,6 +166,8 @@ public class Scene1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     // Select Role button by default
         roleBtn.setSelected(true);
+        DatabaseConnector dbConnector = new DatabaseConnector();
+        Connection connection = dbConnector.connect();
         try {
             Statement statement = connection.createStatement();
             ResultSet response = statement.executeQuery("SELECT role, COUNT(*) AS quantity FROM Champion GROUP BY role");
@@ -143,11 +175,16 @@ public class Scene1Controller implements Initializable {
                     pieChart.getData().add(new PieChart.Data(response.getString("role"), response.getInt("quantity")));
                 }
 
-
-
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+// Don't forget to close your connections when you're done
+            try {
+                if(connection != null) connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
 
 
     }
